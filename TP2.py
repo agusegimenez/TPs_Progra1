@@ -1,6 +1,6 @@
 # TP 2
 import random
-
+"""
 # Ejercicio 1
 # funciones
 def generar_lista_numeros():
@@ -22,29 +22,44 @@ def elimina_valor(num, lista):
     return lista
 
 def esCapicua(lista):
-    capicua = False
-    izquierda = lista[0]
-    derecha = lista[len(lista)-1]
+    longitud = len(lista)
+    for i in range(longitud // 2):
+        if lista[i] != lista[longitud - i - 1]:
+            return False
+    return True
+"""
+
+# Ejercicio 2
+def listaCon50El():
+    lista = []
+    limite = 50
+    for i in range(limite):
+        numero = random.randint(0,100)
+        lista.append(numero)
+    return lista
+
+def hayCopias(lista):
+    copias = False
+    lista.sort()
     for i in range(len(lista)):
-        if izquierda == derecha:
-            izquierda = izquierda + 1
-            derecha = derecha - 1
-            capicua = True
+        if lista[i] == lista[i+1]:
+            return True
         else:
-            return capicua
-    return capicua
+            ++i
 
-# main
-# listaNueva = generar_lista_numeros()
-# print(listaNueva)
-listaPrueba = [50, 17, 91, 17, 50]
+def eliminarCopias(lista):
+    nuevaLista = lista.copy()
+    nuevaLista.sort()
+    for i in nuevaLista:
+        if i.count(nuevaLista[i]) > 1:
+            nuevaLista.remove(nuevaLista[i])
+    return nuevaLista
+    
 
-if esCapicua(listaPrueba):
-    print("La lista es capicua")
-else:
-    print("La lista no es capicua")
-"""
-aEliminar = int(input("Digite el numero que quiere eliminar de la lista: "))
-listaSinxElemento = elimina_valor(aEliminar, listaNueva)
-print(listaSinxElemento)
-"""
+
+
+
+lista = [3,33,3,46,67,5,33,4,67,6,3,2,6,88,99]
+listaSinRepetidos = eliminarCopias(lista)
+print(listaSinRepetidos)
+    
